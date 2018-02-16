@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateVotesTable extends Migration {
+class CreateCommentsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,9 +12,11 @@ class CreateVotesTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('votes', function(Blueprint $table)
+		Schema::create('comments', function(Blueprint $table)
 		{
 			$table->increments('id');
+			$table->mediumText('comment');
+			$table->string('link')->nullable();
 
 			$table->integer('user_id')->unsigned();
 			$table->foreign('user_id')
@@ -27,6 +29,7 @@ class CreateVotesTable extends Migration {
 				->references('id')
 				->on('tickets')
 				->onDelete('cascade');
+				
 			$table->timestamps();
 		});
 	}
@@ -38,7 +41,7 @@ class CreateVotesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('votes');
+		Schema::drop('comments');
 	}
 
 }
