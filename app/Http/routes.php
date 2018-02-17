@@ -11,11 +11,11 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index');
+// Route::get('/', 'WelcomeController@index');
 
 // Route::get('home', 'HomeController@index');
 
-Route::get('latest', [
+Route::get('/', [
     'uses' => 'TicketsController@latest', 
     'as' => 'tickets.latest'
 ]);
