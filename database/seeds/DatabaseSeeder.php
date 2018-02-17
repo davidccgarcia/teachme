@@ -18,25 +18,29 @@ class DatabaseSeeder extends Seeder {
 	{
 		Model::unguard();
 
-		$this->checkForeignKeys(false);
 		$this->truncate($this->tables);
-		$this->checkForeignKeys(true);
-
+		
 		$this->call('UserTableSeeder');
 		$this->call('TicketTableSeeder');
+		$this->call('VoteTableSeeder');
+		$this->call('CommentTableSeeder');
 	}
 
 	protected function truncate(array $tables)
 	{
+		$this->checkForeignKeys(false);
+
 		foreach ($tables as $table) {
 			DB::table($table)->truncate();
 		}
+		
+		$this->checkForeignKeys(true);
 	}
 
 	protected function checkForeignKeys($check)
 	{
 		$check = $check ? '1' : '0';
-		DB::statement('SET FOREIGN_KEY_CHECKS = ' . $check);
+		DB::statement("SET FOREIGN_KEY_CHECKS = $check;");
 	}
 
 }
