@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder {
 		$this->checkForeignKeys(true);
 
 		$this->call('UserTableSeeder');
+		$this->call('TicketTableSeeder');
 	}
 
 	protected function truncate(array $tables)
