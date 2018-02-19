@@ -136,6 +136,10 @@ return [
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 
+		/**
+		* Vendor service providers
+		*/
+
 		/*
 		 * Application Service Providers...
 		 */
@@ -144,6 +148,7 @@ return [
 		'TeachMe\Providers\ConfigServiceProvider',
 		'TeachMe\Providers\EventServiceProvider',
 		'TeachMe\Providers\RouteServiceProvider',
+		'TeachMe\Providers\HtmlServiceProvider',
 
 	],
 
@@ -193,6 +198,11 @@ return [
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
 
+		/**
+		*
+		*/
+		'Form' => 'Collective\Html\FormFacade',
+      	'Html' => 'Collective\Html\HtmlFacade',
 	],
 
 ];

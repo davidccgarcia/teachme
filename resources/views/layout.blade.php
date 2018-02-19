@@ -38,22 +38,9 @@
                     </div>
 
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
                         <ul class="nav navbar-nav">
-                            <li role="presentation">
-                                <a href="#">Recientes</a>
-                            </li>
-                            <li role="presentation" class="active">
-                                <a href="#">Populares</a>
-                            </li>
-                            <li role="presentation">
-                                <a href="#">Abiertas</a>
-                            </li>
-                            <li role="presentation">
-                                <a href="#">Finalizadas</a>
-                            </li>
+                            {!! Html::menu('menu.items') !!}
                         </ul>
-
 
                         <ul class="nav navbar-nav navbar-right">
                             <li class="dropdown">
