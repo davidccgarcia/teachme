@@ -4,6 +4,11 @@
     <div class="container">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
+                @if (Session::has('success')) 
+                    <div class="alert alert-success">
+                        {{ Session::get('success') }}
+                    </div>
+                @endif
                 <h2 class="title-show">
                     {{ $ticket->title }}
                     @include('tickets.partials.status', $ticket)

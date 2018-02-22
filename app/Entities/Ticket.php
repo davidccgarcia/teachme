@@ -4,6 +4,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ticket extends Model {
 
+    protected $fillable = ['title', 'status'];
+
     public function author()
     {
         return $this->belongsTo(User::class, 'user_id');
