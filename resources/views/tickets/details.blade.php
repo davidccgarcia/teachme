@@ -29,12 +29,21 @@
                     <span class="label label-info">Prof. Ruthe Keebler I</span>
                 </p>
                 
-                <form method="POST" action="http://teachme.dev/votar/5" accept-charset="UTF-8"><input name="_token" type="hidden" value="VBIv3EWDAIQuLRW0cGwNQ4OsDKoRhnK2fAEF6UbQ">
-                    <!--button type="submit" class="btn btn-primary">Votar</button-->
-                    <button type="submit" class="btn btn-primary">
-                        <span class="glyphicon glyphicon-thumbs-up"></span> Votar
-                    </button>
-                </form>
+                @if (currentUser()->hasVoted($ticket))
+                    {!! Form::open(['route' => ['tickets.destroy', $ticket->id], 'method' => 'POST']) !!}
+                        <button type="submit" class="btn btn-hight btn-unvote">
+                            <span class="glyphicon glyphicon-thumbs-down"></span> 
+                            No votar
+                        </button>
+                    {!! Form::close() !!}
+                @else 
+                    {!! Form::open(['route' => ['tickets.submit', $ticket->id], 'method' => 'POST']) !!}
+                        <button type="submit" class="btn btn-primary btn-vote">
+                            <span class="glyphicon glyphicon-thumbs-up"></span> 
+                            Votar
+                        </button>
+                    {!! Form::close() !!}
+                @endif
 
                 <h3>Nuevo Comentario</h3>
                 

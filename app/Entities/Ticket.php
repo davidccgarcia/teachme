@@ -18,7 +18,7 @@ class Ticket extends Model {
 
     public function voters()
     {
-        return $this->belongsToMany(User::class, 'votes');
+        return $this->belongsToMany(User::class, 'votes')->withTimestamps();
     }
     
     public function getOpenAttribute()

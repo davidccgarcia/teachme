@@ -4,14 +4,14 @@
         @include('tickets.partials.status', $ticket)
     </h4>
     <p>
-        {!! Form::open(['route' => ['tickets.vote', $ticket], 'method' => 'POST']) !!}
+        {!! Form::open(['route' => ['tickets.submit', $ticket], 'method' => 'POST']) !!}
             <button type="submit" class="btn btn-primary btn-vote">
                 <span class="glyphicon glyphicon-thumbs-up"></span> 
                 Votar
             </button>
         {!! Form::close() !!}
         
-        {!! Form::open(['route' => ['tickets.unvote', $ticket], 'method' => 'POST']) !!}
+        {!! Form::open(['route' => ['tickets.destroy', $ticket], 'method' => 'POST']) !!}
             <button type="submit" class="btn btn-hight btn-unvote hide">
                 <span class="glyphicon glyphicon-thumbs-down"></span> 
                 No votar

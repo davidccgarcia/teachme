@@ -57,13 +57,13 @@ Route::group(['middleware' => 'auth'], function () {
     ]);
 
     Route::post('vote/{ticket}/', [
-        'uses' => 'TicketsController@vote', 
-        'as' => 'tickets.vote'
+        'uses' => 'VotesController@submit', 
+        'as' => 'tickets.submit'
     ]);
 
     Route::post('unvote/{ticket}/', [
-        'uses' => 'TicketsController@unvote', 
-        'as' => 'tickets.unvote'
+        'uses' => 'VotesController@destroy', 
+        'as' => 'tickets.destroy'
     ]);
 
     Route::post('comment/{ticket}', [

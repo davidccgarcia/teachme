@@ -18,7 +18,7 @@ class TicketTableSeeder extends BaseSeeder
     protected function getDummyData(Generator $faker)
     {
         return [
-            'title' => $faker->text, 
+            'title' => $faker->sentence(), 
             'status' => $faker->randomElement(['open', 'open', 'closed']), 
             'user_id' => $this->random('User')->id, 
         ];
