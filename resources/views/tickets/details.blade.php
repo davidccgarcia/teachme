@@ -14,19 +14,13 @@
                     @include('tickets.partials.status', $ticket)
                 </h2>
                 <h4 class="label label-info news">
-                    9 votos
+                    {{ $ticket->voters()->count() }} votos
                 </h4>
 
                 <p class="vote-users">
-                    <span class="label label-info">Eddie Reilly I</span>
-                    <span class="label label-info">Letha Marks</span>
-                    <span class="label label-info">Orpha Quitzon</span>
-                    <span class="label label-info">Orpha Quitzon</span>
-                    <span class="label label-info">Orpha Quitzon</span>
-                    <span class="label label-info">Prof. Robbie Russel V</span>
-                    <span class="label label-info">Juanita Senger</span>
-                    <span class="label label-info">Geo Armstrong PhD</span>
-                    <span class="label label-info">Prof. Ruthe Keebler I</span>
+                    @foreach ($ticket->voters as $voter)
+                        <span class="label label-info">{{ $voter->name }}</span>
+                    @endforeach
                 </p>
                 
                 @if (currentUser()->hasVoted($ticket))
@@ -59,38 +53,19 @@
                     <button type="submit" class="btn btn-primary">Enviar comentario</button>
                 {!! Form::close() !!}
 
-                <h3>Comentarios (6)</h3>
-
-                <div class="well well-sm">
-                    <p><strong>Gene Wintheiser</strong></p>
-                    <p>Non consectetur sequi facilis nihil qui corporis. Autem saepe ut officiis sed est facilis. Officia quam at vel rerum sunt. Sequi vel quibusdam molestias delectus officia.</p>
-                    <p class="date-t"><span class="glyphicon glyphicon-time"></span> 01/04/2015 12:21am</p>
-                </div>
-                <div class="well well-sm">
-                    <p><strong>Simone Herzog</strong></p>
-                    <p>Nostrum tenetur minus repellat. Iusto vitae perferendis optio praesentium harum quos. Quaerat aspernatur dolorem quos omnis culpa eos. Et ab omnis quia in dolorem provident qui.</p>
-                    <p class="date-t"><span class="glyphicon glyphicon-time"></span> 01/04/2015 12:21am</p>
-                </div>
-                <div class="well well-sm">
-                    <p><strong>Hailie Daniel</strong></p>
-                    <p>Unde earum quia quia aliquid. Autem voluptatem et quae veritatis nihil suscipit ut. In qui est qui rerum autem aut voluptatem. Corrupti nobis inventore voluptate et quia ea. Dicta qui ut in.</p>
-                    <p class="date-t"><span class="glyphicon glyphicon-time"></span> 01/04/2015 12:21am</p>
-                </div>
-                <div class="well well-sm">
-                    <p><strong>Ms. Carmella Herman II</strong></p>
-                    <p>Numquam suscipit optio blanditiis aut soluta laborum sequi est. Reiciendis fuga nihil blanditiis veniam repellat quia explicabo. Voluptates corrupti nihil porro voluptas voluptatem temporibus repellat quaerat. Qui saepe rerum officia numquam et ex voluptatem. Cum eum eum repudiandae dolorem voluptas.</p>
-                    <p class="date-t"><span class="glyphicon glyphicon-time"></span> 01/04/2015 12:21am</p>
-                </div>
-                <div class="well well-sm">
-                    <p><strong>Cierra Boyle III</strong></p>
-                    <p>Omnis ut laudantium itaque optio nihil. Rerum magnam recusandae quia quisquam delectus et sint possimus. Nostrum perspiciatis illo et ut sed perferendis.</p>
-                    <p class="date-t"><span class="glyphicon glyphicon-time"></span> 01/04/2015 12:21am</p>
-                </div>
-                <div class="well well-sm">
-                    <p><strong>Kayla Gerlach</strong></p>
-                    <p>Est consectetur mollitia natus nam. Sequi laborum alias nam excepturi laudantium nulla. Mollitia suscipit cum fugiat. Incidunt tempore velit molestiae quo aspernatur quidem.</p>
-                    <p class="date-t"><span class="glyphicon glyphicon-time"></span> 01/04/2015 12:21am</p>
-                </div>
+                <h3>Comentarios ({{ $ticket->comments->count() }})</h3>
+                
+                @foreach ($ticket->comments as $comment)
+                    <div class="well well-sm">
+                        <p><strong>{{ $comment->user->name }}</strong></p>
+                        <p>
+                            {{ $comment->comment }}
+                        </p>
+                        <p class="date-t">
+                            <span class="glyphicon glyphicon-time"></span> {{ $comment->created_at->format('d/m/Y hia') }}
+                        </p>
+                    </div>
+                @endforeach
             </div>
         </div>
     </div>
