@@ -4,11 +4,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
-                @if (Session::has('success')) 
-                    <div class="alert alert-success">
-                        {{ Session::get('success') }}
-                    </div>
-                @endif
+                @include('partials.success')
+
                 <h2 class="title-show">
                     {{ $ticket->title }}
                     @include('tickets.partials.status', $ticket)
@@ -38,13 +35,17 @@
                         </button>
                     {!! Form::close() !!}
                 @endif
+                <br><br>
+                @include('partials.errors')
 
                 <h3>Nuevo Comentario</h3>
                 
-                {!! Form::open(['route' => ['comments.store', $ticket->id], 'method' => 'POST']) !!}
+                {!! Form::open(['route' => ['comments.submit', $ticket->id], 'method' => 'POST']) !!}
                     <div class="form-group">
                         <label for="comment">Comentarios:</label>
-                        <textarea rows="4" class="form-control" name="comment" cols="50" id="comment"></textarea>
+                        <textarea rows="4" class="form-control" name="comment" cols="50" id="comment">
+                            
+                        </textarea>
                     </div>
                     <div class="form-group">
                         <label for="link">Enlace:</label>
@@ -62,7 +63,9 @@
                             {{ $comment->comment }}
                         </p>
                         <p class="date-t">
-                            <span class="glyphicon glyphicon-time"></span> {{ $comment->created_at->format('d/m/Y hia') }}
+                            <span class="glyphicon glyphicon-time"></span> 
+                            {{ $comment->created_at->format('d/m/Y h:ia') }}
+                            <a href="{{ $comment->link }}" target="_blank" rel="nolink">{{ $comment->link }}</a>
                         </p>
                     </div>
                 @endforeach

@@ -67,7 +67,7 @@ Route::group(['middleware' => 'auth'], function () {
     ]);
 
     Route::post('comment/{ticket}', [
-        'uses' => 'CommentsController@store', 
-        'as' => 'comments.store'
+        'uses' => 'CommentsController@submit', 
+        'as' => 'comments.submit'
     ]);
 });

@@ -64,12 +64,6 @@ class TicketsController extends Controller {
             'status' => 'open'
         ]);
 
-        // $ticket = new Ticket;
-        // $ticket->title = $request->title;
-        // $ticket->status = 'open';
-        // $ticket->user_id = $auth->user()->id;
-        // $ticket->save();
-
         Session::flash('success', 'Su solicitud ha sido enviada');
 
         return Redirect::route('tickets.details', $ticket->id);
