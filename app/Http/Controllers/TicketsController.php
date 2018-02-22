@@ -40,7 +40,18 @@ class TicketsController extends Controller {
 
     public function details($id)
     {
-        return view('tickets.details');
+        $ticket = Ticket::findOrFail($id);
+
+        return view('tickets.details', compact('ticket'));
     }
 
+    public function request()
+    {
+        return view('tickets.create');
+    }
+
+    public function store()
+    {
+        dd("store tickets");
+    }
 }

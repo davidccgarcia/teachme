@@ -1,16 +1,22 @@
 <div data-id="25" class="well well-sm request">
     <h4 class="list-title">
         {{ $ticket->title }}
-        @include('tickets.partials.status')
+        @include('tickets.partials.status', $ticket)
     </h4>
     <p>
-        <a href="#" class="btn btn-primary btn-vote" title="Votar por este tutorial">
-            <span class="glyphicon glyphicon-thumbs-up"></span> Votar
-        </a>
-
-        <a href="#" class="btn btn-hight btn-unvote hide">
-            <span class="glyphicon glyphicon-thumbs-down"></span> No votar
-        </a>
+        {!! Form::open(['route' => ['tickets.vote', $ticket], 'method' => 'POST']) !!}
+            <button type="submit" class="btn btn-primary btn-vote">
+                <span class="glyphicon glyphicon-thumbs-up"></span> 
+                Votar
+            </button>
+        {!! Form::close() !!}
+        
+        {!! Form::open(['route' => ['tickets.unvote', $ticket], 'method' => 'POST']) !!}
+            <button type="submit" class="btn btn-hight btn-unvote hide">
+                <span class="glyphicon glyphicon-thumbs-down"></span> 
+                No votar
+            </button>
+        {!! Form::close() !!}
 
         <a href="{{ route('tickets.details', $ticket) }}">
             <span class="votes-count">12 votos</span>

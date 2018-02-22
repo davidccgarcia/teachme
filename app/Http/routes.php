@@ -44,3 +44,30 @@ Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('request', [
+        'uses' => 'TicketsController@request', 
+        'as' => 'tickets.request' 
+    ]);
+
+    Route::post('store', [
+        'uses' => 'TicketsController@store', 
+        'as' => 'tickets.store' 
+    ]);
+
+    Route::post('vote/{ticket}/', [
+        'uses' => 'TicketsController@vote', 
+        'as' => 'tickets.vote'
+    ]);
+
+    Route::post('unvote/{ticket}/', [
+        'uses' => 'TicketsController@unvote', 
+        'as' => 'tickets.unvote'
+    ]);
+
+    Route::post('comment/{ticket}', [
+        'uses' => 'CommentsController@store', 
+        'as' => 'comments.store'
+    ]);
+});
