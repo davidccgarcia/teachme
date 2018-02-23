@@ -3,6 +3,7 @@
 namespace TeachMe\Repositories;
 
 use TeachMe\Entities\Ticket;
+use TeachMe\Entities\User;
 
 class TicketRepository extends BaseRepository
 {
@@ -42,5 +43,13 @@ class TicketRepository extends BaseRepository
             ->orderBy('created_at', 'DESC')
             ->where('status', 'closed')
             ->paginate(20);
+    }
+
+    public function openNew(User $user, $title)
+    {
+        return $user->tickets()->create([
+            'title' => $title, 
+            'status' => 'open'
+        ]);
     }
 }
