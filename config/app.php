@@ -139,6 +139,7 @@ return [
 		/**
 		* Vendor service providers
 		*/
+		'Barryvdh\Debugbar\ServiceProvider',
 
 		/*
 		 * Application Service Providers...
