@@ -21,10 +21,7 @@ class TicketsController extends Controller {
 
 	public function latest()
     {
-        $tickets = $this->ticketRepository
-            ->selectTicketList()
-            ->orderBy('created_at', 'DESC')
-            ->paginate(20);
+        $tickets = $this->ticketRepository->paginateLatest();
 
         return view('tickets.list', compact('tickets'));
     }
@@ -36,29 +33,21 @@ class TicketsController extends Controller {
 
     public function open()
     {
-        $tickets = $this->ticketRepository
-            ->selectTicketList()
-            ->orderBy('created_at', 'DESC')
-            ->where('status', 'open')
-            ->paginate(20);
+        $tickets = $this->ticketRepository->paginateOpen();
 
         return view('tickets.list', compact('tickets'));
     }
 
     public function closed()
     {
-        $tickets = $this->ticketRepository
-            ->selectTicketList()
-            ->orderBy('created_at', 'DESC')
-            ->where('status', 'closed')
-            ->paginate(20);
+        $tickets = $this->ticketRepository->paginateClosed();
 
         return view('tickets.list', compact('tickets'));
     }
 
     public function details($id)
     {
-        $ticket = Ticket::findOrFail($id);
+        $ticket = $this->ticketRepository->findOrFail($id);
 
         return view('tickets.details', compact('ticket'));
     }
