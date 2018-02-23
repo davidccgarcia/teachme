@@ -5,15 +5,26 @@ use TeachMe\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 
+use TeachMe\Repositories\TicketRepository;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Guard;
 use TeachMe\Entities\Ticket;
 
 class TicketsController extends Controller {
 
+    protected $ticketRepository;
+
+    public function __construct(TicketRepository $ticketRepository)
+    {
+        $this->ticketRepository = $ticketRepository;
+    }
+
 	public function latest()
     {
-        $tickets = Ticket::orderBy('created_at', 'DESC')->paginate(20);
+        $tickets = $this->ticketRepository
+            ->selectTicketList()
+            ->orderBy('created_at', 'DESC')
+            ->paginate(20);
 
         return view('tickets.list', compact('tickets'));
     }
@@ -25,7 +36,9 @@ class TicketsController extends Controller {
 
     public function open()
     {
-        $tickets = Ticket::orderBy('created_at', 'DESC')
+        $tickets = $this->ticketRepository
+            ->selectTicketList()
+            ->orderBy('created_at', 'DESC')
             ->where('status', 'open')
             ->paginate(20);
 
@@ -34,7 +47,9 @@ class TicketsController extends Controller {
 
     public function closed()
     {
-        $tickets = Ticket::orderBy('created_at', 'DESC')
+        $tickets = $this->ticketRepository
+            ->selectTicketList()
+            ->orderBy('created_at', 'DESC')
             ->where('status', 'closed')
             ->paginate(20);
 
