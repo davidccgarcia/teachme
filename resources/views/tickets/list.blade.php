@@ -6,14 +6,14 @@
             <div class="col-md-10 col-md-offset-1">
                 <div class="row">
                     <h1>
-                        {{ $title = trans(Route::currentRouteName() . '_title') }}
+                        {{ $title }}
                         <a href="{{ route('tickets.request') }}" class="btn btn-primary">
                             Nueva solicitud
                         </a>
                     </h1>
 
                     <p class="label label-info news">
-                        {{ Lang::choice(Route::currentRouteName() . '_total', $tickets->total()) }}
+                        {{ $text_total }}
                         
                     </p>
                     @foreach ($tickets as $ticket)
