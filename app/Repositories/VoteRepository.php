@@ -11,4 +11,9 @@ class VoteRepository
     {
         return $user->vote($ticket);
     }
+
+    public function unvote(User $user, Ticket $ticket)
+    {
+        return $user->unvote($ticket);
+    }
 }

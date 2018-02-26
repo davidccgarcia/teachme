@@ -34,10 +34,14 @@ class VotesController extends Controller {
         return redirect()->back();
     }
 
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        $ticket = Ticket::findOrFail($id);
-        currentUser()->unvote($ticket);
+        $ticket = $this->ticketRepository->findOrFail($id);
+        $success = $this->voteRepository->unvote(currentUser(), $ticket);
+        
+        if ($request->ajax()) {
+            return response()->json(['success' => $success]);
+        }
 
         return redirect()->back();
     }
