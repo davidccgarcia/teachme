@@ -1,22 +1,19 @@
-<div data-id="25" class="well well-sm request">
+<div data-id="{{ $ticket->id }}" class="ticket well well-sm request">
     <h4 class="list-title">
         {{ $ticket->title }}
         @include('tickets.partials.status', $ticket)
     </h4>
     <p>
-        {!! Form::open(['route' => ['tickets.submit', $ticket], 'method' => 'POST']) !!}
-            <button type="submit" class="btn btn-primary btn-vote">
-                <span class="glyphicon glyphicon-thumbs-up"></span> 
-                Votar
-            </button>
-        {!! Form::close() !!}
-        
-        {!! Form::open(['route' => ['tickets.destroy', $ticket], 'method' => 'POST']) !!}
-            <button type="submit" class="btn btn-hight btn-unvote hide">
-                <span class="glyphicon glyphicon-thumbs-down"></span> 
-                No votar
-            </button>
-        {!! Form::close() !!}
+
+        <a href="#" {!! Html::classes(['btn btn-primary btn-vote', 'hidden' => currentUser()->hasVoted($ticket)]) !!}>
+            <span class="glyphicon glyphicon-thumbs-up"></span> 
+            Votar
+        </a>
+
+        <a href="#" {!! Html::classes(['btn btn-hight btn-unvote', 'hidden' => ! currentUser()->hasVoted($ticket)]) !!}>
+            <span class="glyphicon glyphicon-thumbs-down"></span> 
+            No votar
+        </a>
         
         @if (Auth::check())
             <a href="{{ route('tickets.details', $ticket) }}">

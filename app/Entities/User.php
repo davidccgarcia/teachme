@@ -58,11 +58,11 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
 	public function unvote(Ticket $ticket)
 	{
-		if ($this->hasVoted($ticket)) {
-			$this->voted()->detach($ticket);
-			return true;
+		if (! $this->hasVoted($ticket)) {
+			return false;
 		}
 		
-		return false;
+		$this->voted()->detach($ticket);
+		return true;
 	}
 }

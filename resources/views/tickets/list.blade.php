@@ -22,6 +22,11 @@
 
                     {!! $tickets->render() !!}
                 <hr>
+                {!! Form::open(['route' => ['tickets.submit', ':id'], 'method' => 'POST', 'id' => 'form-vote']) !!}
+                {!! Form::close() !!}
+
+                {!! Form::open(['route' => ['tickets.destroy', ':id'], 'method' => 'POST', 'id' => 'form-unvote']) !!}
+                {!! Form::close() !!}
 
                 <p><a href="http://duilio.me" target="_blank">duilio.me</a></p>
 
