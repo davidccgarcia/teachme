@@ -1,7 +1,10 @@
 <?php
 
+use Illuminate\Foundation\Testing\DatabaseTransactions;
+
 class ExampleTest extends TestCase {
 
+	use DatabaseTransactions;
 	/**
 	 * A basic functional test example.
 	 *
@@ -9,9 +12,15 @@ class ExampleTest extends TestCase {
 	 */
 	public function testBasicExample()
 	{
-		$response = $this->call('GET', '/');
+		// Having
+		$user = seed('User');
+		
+		// When
+		$this->actingAs($user)
+			->visit('/')
 
-		$this->assertEquals(200, $response->getStatusCode());
+		// Then
+			->see('Solicitudes recientes');
 	}
 
 }
