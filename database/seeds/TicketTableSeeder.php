@@ -1,21 +1,22 @@
 <?php
 
 use TeachMe\Entities\Ticket;
+use Styde\Seeder\Seeder;
 use Faker\Generator;
 
-class TicketTableSeeder extends BaseSeeder
+class TicketTableSeeder extends Seeder
 {
     public function run()
     {
         $this->createMultiple(50);
     }
 
-    protected function getModel()
+    public function getModel()
     {
         return new Ticket;
     }
 
-    protected function getDummyData(Generator $faker)
+    public function getDummyData(Generator $faker, array $customValues = [])
     {
         return [
             'title' => $faker->sentence(), 

@@ -140,6 +140,7 @@ return [
 		* Vendor service providers
 		*/
 		'Barryvdh\Debugbar\ServiceProvider',
+		'Styde\Seeder\SeederServiceProvider',
 
 		/*
 		 * Application Service Providers...

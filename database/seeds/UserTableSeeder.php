@@ -1,9 +1,10 @@
 <?php
 
 use TeachMe\Entities\User;
+use Styde\Seeder\Seeder;
 use Faker\Generator;
 
-class UserTableSeeder extends BaseSeeder
+class UserTableSeeder extends Seeder
 {
     public function run()
     {
@@ -11,12 +12,12 @@ class UserTableSeeder extends BaseSeeder
         $this->createMultiple(49);
     }
 
-    protected function getModel()
+    public function getModel()
     {
         return new User;
     }
 
-    protected function getDummyData(Generator $faker)
+    public function getDummyData(Generator $faker, array $customValues = [])
     {
         return [
             'name' => $faker->name, 

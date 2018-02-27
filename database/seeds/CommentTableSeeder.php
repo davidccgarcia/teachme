@@ -1,21 +1,22 @@
 <?php
 
 use TeachMe\Entities\Comment;
+use Styde\Seeder\Seeder;
 use Faker\Generator;
 
-class CommentTableSeeder extends BaseSeeder
+class CommentTableSeeder extends Seeder
 {
     public function run()
     {
         $this->createMultiple(50);
     }
 
-    protected function getModel()
+    public function getModel()
     {
         return new Comment();
     }
 
-    protected function getDummyData(Generator $faker)
+    public function getDummyData(Generator $faker, array $customValues = [])
     {
         return [
             'comment' => $faker->sentence(), 

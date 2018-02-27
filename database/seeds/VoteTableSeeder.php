@@ -1,21 +1,22 @@
 <?php
 
 use TeachMe\Entities\Vote;
+use Styde\Seeder\Seeder;
 use Faker\Generator;
 
-class VoteTableSeeder extends BaseSeeder
+class VoteTableSeeder extends Seeder
 {
     public function run()
     {
         $this->createMultiple(250);
     }
 
-    protected function getModel()
+    public function getModel()
     {
         return new Vote();
     }
 
-    protected function getDummyData(Generator $faker)
+    public function getDummyData(Generator $faker, array $customValues = [])
     {
         return [
             'user_id' => $this->random('User')->id, 

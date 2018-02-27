@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "34eed79c6e3d62562a7e7fe1f8d0fa28",
+    "content-hash": "76ad4e467b4fc70f7b11dd821f0ae114",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -1178,6 +1178,53 @@
                 "shell"
             ],
             "time": "2016-03-09T05:03:14+00:00"
+        },
+        {
+            "name": "styde/seeder",
+            "version": "1.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/StydeNet/seeder.git",
+                "reference": "7064170e2d6747de6803a0c9e53de460dbae99da"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/StydeNet/seeder/zipball/7064170e2d6747de6803a0c9e53de460dbae99da",
+                "reference": "7064170e2d6747de6803a0c9e53de460dbae99da",
+                "shasum": ""
+            },
+            "require": {
+                "fzaninotto/faker": "1.5.*@dev",
+                "laravel/framework": "5.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Styde\\Seeder\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Duilio Palacios",
+                    "email": "admin@styde.net",
+                    "homepage": "https://styde.net",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravel's improved seeders",
+            "homepage": "https://styde.net",
+            "keywords": [
+                "laravel",
+                "seeder"
+            ],
+            "time": "2016-01-22T13:50:19+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
