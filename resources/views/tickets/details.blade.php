@@ -30,14 +30,14 @@
                 
                 @if (currentUser()->hasVoted($ticket))
                     {!! Form::open(['route' => ['tickets.destroy', $ticket->id], 'method' => 'POST']) !!}
-                        <button type="submit" class="btn btn-hight btn-unvote">
+                        <button type="submit" class="btn btn-hight">
                             <span class="glyphicon glyphicon-thumbs-down"></span> 
                             No votar
                         </button>
                     {!! Form::close() !!}
                 @else 
                     {!! Form::open(['route' => ['tickets.submit', $ticket->id], 'method' => 'POST']) !!}
-                        <button type="submit" class="btn btn-primary btn-vote">
+                        <button type="submit" class="btn btn-primary">
                             <span class="glyphicon glyphicon-thumbs-up"></span> 
                             Votar
                         </button>
