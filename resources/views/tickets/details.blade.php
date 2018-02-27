@@ -10,6 +10,14 @@
                     {{ $ticket->title }}
                     @include('tickets.partials.status', $ticket)
                 </h2>
+
+                @if ($ticket->link)
+                    <p>
+                        <a href="{{ $ticket->link }}" class="btn btn-primary" rel="nofollow" target="_blank">
+                            Ver recurso
+                        </a>
+                    </p>
+                @endif
                 <h4 class="label label-info news">
                     {{ $ticket->voters()->count() }} votos
                 </h4>

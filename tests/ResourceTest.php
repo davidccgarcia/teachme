@@ -25,11 +25,10 @@ class ResourceTest extends TestCase
             ->type($this->title, 'title')
             ->type($this->link, 'link')
             ->press('Enviar Solicitud')
-            ->seePageIs(route('tickets.latest'))
-            ->see('Solicitudes recientes')
-            ->see($this->title)
             ->seeInDatabase('tickets', [
                 'title' => $this->title, 'link' => $this->link, 'status' => 'closed'
-            ]);
+            ])
+            ->see($this->title)
+            ->seeLink('Ver recurso', $this->link);
     }
 }

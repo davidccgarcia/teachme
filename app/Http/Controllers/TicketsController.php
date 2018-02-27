@@ -61,7 +61,7 @@ class TicketsController extends Controller {
         ]);
 
         $ticket = $this->ticketRepository->openNew(
-            currentUser(), $request->get('title')
+            currentUser(), $request->get('title'), $request->get('link')
         );
 
         Session::flash('success', 'Su solicitud ha sido enviada');

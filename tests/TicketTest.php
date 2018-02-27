@@ -23,7 +23,7 @@ class TicketTest extends TestCase
         $this->click('Nueva solicitud')
             ->seePageIs(route('tickets.request'))
             ->type('Curso de Vue Js', 'title')
-            ->press('Enviar Solictud')
+            ->press('Enviar Solicitud')
             ->see('Curso de Vue Js')
             ->seeInDatabase('tickets', ['title' => 'Curso de Vue Js']);
     }
