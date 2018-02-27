@@ -57,7 +57,8 @@ class TicketsController extends Controller {
     public function store(Request $request)
     {
         $this->validate($request, [
-            'title' => 'required|max:200'
+            'title' => 'required|max:200', 
+            'link'  => 'url'
         ]);
 
         $ticket = $this->ticketRepository->openNew(
