@@ -69,4 +69,12 @@ class TicketsController extends Controller {
 
         return Redirect::route('tickets.details', $ticket->id);
     }
+
+    public function select($ticket, $comment)
+    {
+        $ticket = $this->ticketRepository->findOrFail($ticket);
+        $ticket->assignResource($comment);
+
+        return Redirect::back();
+    }
 }

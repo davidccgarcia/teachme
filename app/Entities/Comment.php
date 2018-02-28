@@ -4,6 +4,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model {
 
+    protected $fillable = ['comment', 'link', 'selected'];
+
 	public function ticket()
     {
         return $this->belongsTo(Ticket::class);

@@ -70,4 +70,9 @@ Route::group(['middleware' => 'auth'], function () {
         'uses' => 'CommentsController@submit', 
         'as' => 'comments.submit'
     ]);
+
+    Route::post('tickets/resource/{ticket}/{comment}', [
+        'uses' => 'TicketsController@select', 
+        'as' => 'tickets.select'
+    ]);
 });

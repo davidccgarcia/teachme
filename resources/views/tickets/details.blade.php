@@ -73,7 +73,14 @@
                         <p class="date-t">
                             <span class="glyphicon glyphicon-time"></span> 
                             {{ $comment->created_at->format('d/m/Y h:ia') }}
-                            <a href="{{ $comment->link }}" target="_blank" rel="nolink">{{ $comment->link }}</a>
+
+                            @if ($comment->link)
+                                <a href="{{ $comment->link }}" target="_blank" rel="nolink">{{ $comment->link }}</a>
+
+                                {!! Form::open(['route' => ['tickets.select', $ticket, $comment]]) !!}
+                                    <button type="submit" class="btn btn-success">Seleccionar tutorial</button>
+                                {!! Form::close() !!}
+                            @endif
                         </p>
                     </div>
                 @endforeach

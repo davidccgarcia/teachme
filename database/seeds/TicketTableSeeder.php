@@ -20,7 +20,6 @@ class TicketTableSeeder extends Seeder
     {
         return [
             'title' => $faker->sentence(), 
-            'link' => $faker->url,
             'status' => $faker->randomElement(['open', 'open', 'closed']), 
             'user_id' => $this->random('User')->id, 
         ];

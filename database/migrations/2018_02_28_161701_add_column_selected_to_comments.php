@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddColumnLinkToTickets extends Migration
+class AddColumnSelectedToComments extends Migration
 {
     /**
      * Run the migrations.
@@ -12,10 +12,8 @@ class AddColumnLinkToTickets extends Migration
      */
     public function up()
     {
-        Schema::table('tickets', function (Blueprint $table) {
-            $table->string('link')
-                ->nullable()
-                ->after('title');
+        Schema::table('comments', function (Blueprint $table) {
+            $table->boolean('selected')->default(false)->after('link');
         });
     }
 
@@ -26,8 +24,8 @@ class AddColumnLinkToTickets extends Migration
      */
     public function down()
     {
-        Schema::table('tickets', function (Blueprint $table) {
-            $table->dropColumn('link');
+        Schema::table('comments', function (Blueprint $table) {
+            $table->dropColumn('selected');
         });
     }
 }
