@@ -146,6 +146,7 @@ return [
 		 * Application Service Providers...
 		 */
 		'TeachMe\Providers\AppServiceProvider',
+		'TeachMe\Providers\AuthServiceProvider',
 		'TeachMe\Providers\BusServiceProvider',
 		'TeachMe\Providers\ConfigServiceProvider',
 		'TeachMe\Providers\EventServiceProvider',

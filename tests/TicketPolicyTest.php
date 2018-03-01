@@ -2,6 +2,7 @@
 
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
+use Illuminate\Support\Facades\Gate;
 use TeachMe\Policies\TicketPolicy;
 
 class TicketPolicyTest extends TestCase
@@ -50,6 +51,6 @@ class TicketPolicyTest extends TestCase
         $policy = new TicketPolicy();
 
         // Then
-        $this->assertTrue($policy->selectResource($admin, $ticket));
+        $this->assertTrue(Gate::forUser($admin)->allows('selectResource', $ticket));
     }
 }

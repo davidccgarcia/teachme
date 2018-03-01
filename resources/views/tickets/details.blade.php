@@ -76,10 +76,12 @@
 
                             @if ($comment->link)
                                 <a href="{{ $comment->link }}" target="_blank" rel="nolink">{{ $comment->link }}</a>
-
-                                {!! Form::open(['route' => ['tickets.select', $ticket, $comment]]) !!}
-                                    <button type="submit" class="btn btn-success">Seleccionar tutorial</button>
-                                {!! Form::close() !!}
+                                
+                                @can('selectResource', $ticket)
+                                    {!! Form::open(['route' => ['tickets.select', $ticket, $comment]]) !!}
+                                        <button type="submit" class="btn btn-success">Seleccionar tutorial</button>
+                                    {!! Form::close() !!}
+                                @endcan
                             @endif
                         </p>
                     </div>
