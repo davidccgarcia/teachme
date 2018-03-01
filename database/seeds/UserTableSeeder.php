@@ -21,6 +21,7 @@ class UserTableSeeder extends Seeder
     {
         return [
             'name' => $faker->name, 
+            'role' => 'user', 
             'email' => $faker->email,
             'password' => bcrypt('secret'), 
             'remember_token' => str_random(25)
@@ -31,6 +32,7 @@ class UserTableSeeder extends Seeder
     {
         $this->create([
             'name' => 'David García', 
+            'role' => 'admin', 
             'email' => 'ccristhiangarcia@gmail.com', 
             'password' => bcrypt('secret'), 
             'remember_token' => str_random(25)
