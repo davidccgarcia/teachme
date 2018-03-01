@@ -12,7 +12,7 @@ class TicketPolicy
 
     public function selectResource(User $user, Ticket $ticket)
     {
-        return $user->isAuthor($ticket);
+        return $user->isAuthor($ticket) && $ticket->isOpen();
     }
 
     /**
