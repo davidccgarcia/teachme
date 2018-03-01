@@ -65,4 +65,14 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		$this->voted()->detach($ticket);
 		return true;
 	}
+
+	public function isAuthor(Ticket $ticket)
+	{
+		return $this->id == $ticket->user_id;
+	}
+
+	public function isAdmin()
+	{
+		return $this->role == 'admin';
+	}
 }

@@ -12,7 +12,7 @@ class TicketPolicy
 
     public function selectResource(User $user, Ticket $ticket)
     {
-        return $user->id == $ticket->user_id || $user->role == 'admin';
+        return $user->isAuthor($ticket) || $user->isAdmin();
     }
 
     /**
