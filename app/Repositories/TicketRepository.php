@@ -7,12 +7,22 @@ use TeachMe\Entities\User;
 
 class TicketRepository extends BaseRepository
 {
+    private function getCountVotesQuery()
+    {
+        return '(SELECT COUNT(*) FROM votes WHERE votes.ticket_id = tickets.id)';
+    }
+
+    private function getCountCommentsQuery()
+    {
+        return '(SELECT COUNT(*) FROM comments WHERE comments.ticket_id = tickets.id)';
+    }
+
     public function selectTicketList()
     {
         return $this->newQuery()->selectRaw(
             'tickets.*, '
-            .'(SELECT COUNT(*) FROM votes WHERE votes.ticket_id = tickets.id) as num_votes,'
-            .'(SELECT COUNT(*) FROM comments WHERE comments.ticket_id = tickets.id) as num_comments'
+            . $this->getCountVotesQuery() . ' as num_votes,'
+            . $this->getCountCommentsQuery() . ' as num_comments'
         )->with('author');
     }
 
@@ -42,6 +52,14 @@ class TicketRepository extends BaseRepository
         return $this->selectTicketList()
             ->orderBy('created_at', 'DESC')
             ->where('status', 'closed')
+            ->paginate(20);
+    }
+
+    public function paginatePopular()
+    {
+        return $this->selectTicketList()
+            ->orderBy('num_votes', 'DESC')
+            ->whereRaw($this->getCountVotesQuery() . '>=10')
             ->paginate(20);
     }
 
